@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Cinema</title>
+    <style>
+        /* This hides the file name/title if some browsers try to show it */
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; margin: 0; padding: 20px; overflow: hidden; }
+        .player-container { width: 100%; max-width: 800px; margin: auto; }
+        video { width: 100%; border-radius: 8px; outline: none; }
+        h1 { font-size: 1.2rem; letter-spacing: 1px; color: #cc0000; }
+    </style>
+</head>
+<body oncontextmenu="return false;"> <!-- This disables right-click -->
+
+    <div class="player-container">
+        <h1>EXCLUSIVE STREAM</h1>
+        
+        <!-- 'nodownload' hides the download button; 'noplaybackrate' hides speed control -->
+        <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture>
+            <source src=https://drive.google.com/uc?export=download&id=1-Q0_N73cBwjGw1jl7ksFE8-zeYf6nd-y" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <p style="color: #444; font-size: 12px;">New content every 48 hours.</p>
+    </div>
+
+</body>
+</html>
