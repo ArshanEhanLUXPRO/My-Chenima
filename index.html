@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Cinema</title>
     <style>
+        /* General Page Styling */
         body { 
             background: #000; 
             color: #fff; 
@@ -15,16 +16,57 @@
             justify-content: center; 
             height: 100vh; 
             margin: 0;
+            overflow: hidden;
         }
-        .container { width: 95%; max-width: 800px; text-align: center; }
-        h1 { font-size: 1.2rem; color: #ff3e3e; margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
-        video { 
-            width: 100%; 
-            border-radius: 12px; 
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); 
+
+        .container { 
+            width: 95%; 
+            max-width: 800px; 
+            text-align: center; 
+        }
+
+        h1 { 
+            font-size: 1.2rem; 
+            color: #ff3e3e; 
+            margin-bottom: 20px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+        }
+
+        /* The Video Box with the Invisible Shield */
+        .video-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
             background: #111;
         }
-        .footer { margin-top: 15px; font-size: 10px; color: #444; }
+
+        video { 
+            width: 100%; 
+            display: block;
+        }
+
+        /* THE INVISIBLE SHIELD: This blocks the top-right corner */
+        .video-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70px; /* Covers the area where the icon usually is */
+            height: 70px;
+            background: transparent;
+            z-index: 10; /* Put this 'wall' on top */
+            pointer-events: auto;
+        }
+
+        .footer { 
+            margin-top: 15px; 
+            font-size: 10px; 
+            color: #444; 
+        }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -32,13 +74,24 @@
     <div class="container">
         <h1>Exclusive Stream</h1>
         
-        <video id="player" controls controlsList="nodownload" preload="metadata">
-            <source src="https://www.dropbox.com/scl/fi/bdlnhjd9af6lwq7r2xprg/Demon-House-Full-Video.mp4?rlkey=yzghjd3snqmtol8uy4xzxu1yb&st=w8scy4uk&raw=1" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="video-wrapper">
+            <!-- Using your Dropbox link with raw=1 -->
+            <video id="player" controls controlsList="nodownload" preload="metadata">
+                <source src="https://www.dropbox.com/scl/fi/bdlnhjd9af6lwq7r2xprg/Demon-House-Full-Video.mp4?rlkey=yzghjd3snqmtol8uy4xzxu1yb&st=w8scy4uk&raw=1" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
 
         <p class="footer">NEW MOVIE EVERY 2 DAYS • ENJOY THE SHOW</p>
     </div>
 
+    <script>
+        // Extra layer of protection for mobile
+        document.getElementById('player').addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+
 </body>
 </html>
+
